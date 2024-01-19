@@ -4,11 +4,9 @@ Write-Host "Current directory: $currentDirectory"
 
 # Create the full path to the current directory
 $fullPath = $currentDirectory.Path
-Write-Host "Full path: $fullPath"
 
 # Get the current user's profile
 $userPath = $PROFILE.CurrentUserCurrentHost
-Write-Host "User path: $userPath"
 
 $userDirectory = Split-Path $userPath
 
