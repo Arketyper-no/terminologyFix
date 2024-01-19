@@ -51,7 +51,6 @@ if ($matchesFound) {
     $modifiedContent = @()
 
     foreach ($line in $fileContent) {
-        $lineModified = $false  # Track if the line is modified
 
         # Process the line with matches
         foreach ($regex in $matchRegexes) {
@@ -61,7 +60,6 @@ if ($matchesFound) {
                 $line = $line -replace $regex, "`$1`$2`$3"
                 $outputLine = $line -replace '^\s+'
                 Write-Host "Replaced line with: '$outputLine'"
-                $lineModified = $true
                 break  # exit the loop after processing the first match
             }
         }
@@ -69,9 +67,6 @@ if ($matchesFound) {
         # Collect the modified or unmodified line in the array
         $modifiedContent += $line
 
-        #if ($lineModified) {
-        #    Write-Host "Modified line added to the array."
-        #}
     }
 
     # Output the array content to the file
