@@ -8,6 +8,7 @@ $fullPath = $currentDirectory.Path
 # Get the current user's profile
 $userPath = $PROFILE.CurrentUserCurrentHost
 
+# Get the path part of the userPath
 $userDirectory = Split-Path $userPath
 
 # Check if the profile script file exists
