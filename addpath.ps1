@@ -1,15 +1,13 @@
-# Get the current directory
-$currentDirectory = Get-Location
-Write-Host "Current directory: $currentDirectory"
-
-# Create the full path to the current directory
-$fullPath = $currentDirectory.Path
+# Get the directory of the script directory
+$fullPath = $PSScriptRoot
+Write-Host "Script directory: $fullPath"
 
 # Get the current user's profile
 $userPath = $PROFILE.CurrentUserCurrentHost
 
 # Get the path part of the userPath
 $userDirectory = Split-Path $userPath
+Write-Host "User's profile script: $userPath"
 
 # Check if the profile script file exists
 if (-not (Test-Path $userPath -PathType Leaf)) {
@@ -27,7 +25,7 @@ $existingLine = (Get-Content $userPath -ErrorAction SilentlyContinue) -contains 
 if (-not $existingLine) {
     # Add your directory to the user's profile script
     Add-Content $userPath -Value "`n`$env:Path += ';$fullPath'"
-    Write-Host "Directory added to the user's profile script."
+    Write-Host "Directory $fullPath added to the user's profile script $userPath."
 } else {
     Write-Host "Directory is already in the user's profile script."
 }
